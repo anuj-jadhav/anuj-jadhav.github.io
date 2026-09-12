@@ -1,57 +1,46 @@
 # anuj-jadhav-site
 
-Personal website for Anuj Jadhav — plain HTML/CSS/JS, no build step, fully
-customizable, and free to host on GitHub Pages.
+Personal website for Anuj Jadhav — plain HTML/CSS/JS, no build step.
+
+Live at: **https://anuj-jadhav.github.io/**
 
 ## Structure
 
 ```
 index.html          About page
 projects.html       Projects
-publications.html   Publications ("coming soon" placeholder)
-cv.html             CV — links cv-placeholder.pdf for download
-cv-placeholder.pdf  Placeholder CV file — replace with the real one
-css/style.css       All styling (light + dark mode via prefers-color-scheme)
-js/script.js        Mobile menu toggle + active-nav-link highlighting
-images/             Profile photo (currently a placeholder SVG)
+publications.html   Publications ("coming soon" for now)
+cv.html             CV — inline PDF preview + download/open links
+cv.pdf              The actual CV shown on the CV page
+css/style.css       All styling (light + dark mode, manual toggle)
+js/script.js        Mobile menu toggle, active-nav-link highlighting, theme toggle
+images/             Profile photo
 ```
 
 ## Customize
 
-- **Photo**: replace `images/profile-placeholder.svg` with a real photo
-  (e.g. `images/profile.jpg`) and update the `src` in the three HTML files.
+- **Photo**: replace `images/profile.jpg` (or whatever the current file is —
+  check the `src` on the `<img class="avatar">` tag) and keep the same
+  filename, or update the `src` in all four HTML files.
 - **Colors**: edit the CSS variables at the top of `css/style.css`
   (`--accent`, `--bg`, etc.).
 - **Content**: edit the HTML files directly — each page repeats the same
-  sidebar markup, so update contact links / nav in all three if they change.
-- **CV**: replace `cv-placeholder.pdf` in the project root with your real CV
-  (same filename, or update the `href` in `cv.html`), or replace the page's
-  download button with a full HTML CV.
+  sidebar markup, so update contact links / nav in all four if they change.
+- **CV**: replace `cv.pdf` in the project root with an updated version, same
+  filename — the preview on `cv.html` picks it up automatically.
 - **Publications**: `publications.html` currently just says "Coming soon" —
   replace its `.coming-soon` block with an actual list when ready.
 
-## Deploy to GitHub Pages (free)
+## Updating the live site
 
-1. Create a new GitHub repo. To get the site at the root domain
-   `https://anuj-gif-web.github.io/`, name the repo exactly
-   `anuj-jadhav.github.io`. Any other repo name works too — the site will
-   then live at `https://anuj-gif-web.github.io/<repo-name>/`.
-2. Push this folder to that repo:
+```bash
+cd anuj-jadhav-site
+git add .
+git commit -m "Describe what changed"
+git push
+```
 
-   ```bash
-   cd anuj-jadhav-site
-   git init
-   git add .
-   git commit -m "Initial personal site"
-   git branch -M main
-   git remote add origin https://github.com/anuj-jadhav/<repo-name>.git
-   git push -u origin main
-   ```
-
-3. On GitHub: **Settings → Pages → Build and deployment → Source** = "Deploy
-   from a branch", **Branch** = `main`, folder `/ (root)`. Save.
-4. Wait a minute, then visit the URL GitHub shows on that Pages settings
-   page.
-
-No Jekyll, no Ruby, no build step — GitHub Pages serves these static files
-directly.
+GitHub Pages rebuilds from `main` automatically within about a minute of
+any push — no separate deploy step. If a browser shows a stale version
+right after pushing, hard-refresh (Cmd/Ctrl+Shift+R) or wait a few minutes
+for its CDN cache to expire.
